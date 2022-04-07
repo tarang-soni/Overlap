@@ -47,8 +47,8 @@ public class DoorMechanism : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 Debug.Log("triggered");
-                collision.GetComponent<PlayerMovement>().levelCompleted = true;
-                Debug.Log("triggered"+ collision.GetComponent<PlayerMovement>().levelCompleted);
+                collision.GetComponent<MultiplayerPlayerController>().levelCompleted = true;
+                Debug.Log("triggered"+ collision.GetComponent<MultiplayerPlayerController>().levelCompleted);
             }
 
         }

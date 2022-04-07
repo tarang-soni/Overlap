@@ -8,19 +8,21 @@ public enum Character
     Twine,
     Black
 };
-public class MultiplayerPlayerController : MonoBehaviourPunCallbacks
+public class MultiplayerPlayerController : MonoBehaviour
 {
+    Joystick left_joystick;
+    Joystick right_joystick;
     string HOR_STR;
     string VERT_STR;
     public float moveSpeed, rotSpeed;
     public bool levelCompleted = false;
     Vector2 dir;
 
-    SpriteMask maskTorch;
     public Character charType;
     Rigidbody2D rb;
     [SerializeField]
     PhotonView view;
+    public float angle;
     public SpriteMask MaskTorch { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -31,46 +33,14 @@ public class MultiplayerPlayerController : MonoBehaviourPunCallbacks
 
         if (view.IsMine)
         {
-            maskTorch = GetComponentInChildren<SpriteMask>();
             rb = GetComponent<Rigidbody2D>();
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                if (PhotonNetwork.NickName == PhotonNetwork.PlayerList[i].NickName)
-                {
-                    //charType = GameManager.Instance.players[i].charType;
-                    charType = GameManager.Instance.charType;
-                    break;
-                }
-            }
-
-            SelectCharType();
+            left_joystick = GameManager.Instance.leftJoystick;
+            right_joystick = GameManager.Instance.rightJoystick;
         }
-    }
-    void SelectCharType()
-    {
-        //if (view.AmOwner)
-        //{
-        //    for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        //    {
-        //        //GameManager.Instance.playerSpawned[i].charType = GameManager.Instance.players[i].charType;
-        //        GameManager.Instance.playerSpawned[i].charType = GameManager.Instance.charType;
-        //        if (charType == Character.Black)
-        //        {
-        //            transform.gameObject.layer = LayerMask.NameToLayer("Black");
-        //            maskTorch.frontSortingLayerID = SortingLayer.NameToID("White");
-        //        }
-        //        else if (charType == Character.Twine)
-        //        {
-        //            transform.gameObject.layer = LayerMask.NameToLayer("White");
-        //            maskTorch.frontSortingLayerID = SortingLayer.NameToID("Black");
-        //        }
-        //    }
 
-        //}
-        GameManager.Instance.SetupCharacterTypes(this);
-     
     }
-    // Update is called once per frame
+
+
     void Update()
     {
         if (view.IsMine)
@@ -82,17 +52,27 @@ public class MultiplayerPlayerController : MonoBehaviourPunCallbacks
     {
         if (view.IsMine)
         {
-            rb.velocity = transform.up * dir.y * moveSpeed * Time.fixedDeltaTime;
+            rb.velocity =  dir * moveSpeed * Time.fixedDeltaTime;
 
         }
     }
     void Move()
     {
-        dir.x = Input.GetAxisRaw(HOR_STR);
-        dir.y = Input.GetAxisRaw(VERT_STR);
-        dir.Normalize();
 
+        dir.x = left_joystick.Horizontal;
+        dir.y = left_joystick.Vertical ;
 
-        transform.Rotate(-Vector3.forward * dir.x, rotSpeed * Time.deltaTime);
+        Vector2 rightDir;
+        rightDir.x = right_joystick.Horizontal;
+        rightDir.y = right_joystick.Vertical;
+        if (rightDir == Vector2.zero )
+        {
+            return;
+        }
+        Debug.Log(right_joystick.Horizontal);
+        angle = Mathf.Atan2(right_joystick.Vertical,right_joystick.Horizontal)*Mathf.Rad2Deg;
+        Quaternion lookRot = Quaternion.Euler((angle-90f) * Vector3.forward);
+        transform.rotation = Quaternion.Lerp(transform.rotation,lookRot,Time.deltaTime*10f);
+      
     }
 }

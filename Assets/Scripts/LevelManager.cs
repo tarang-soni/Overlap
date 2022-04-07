@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance = null;
     public GameObject playerOneSpawn, playerTwoSpawn;
     public GameObject playerOne, playerTwo;
+    public Joystick leftJoystick;
+    public Joystick rightJoystick;
     private void Awake()
     {
         if (Instance != null && Instance != this)

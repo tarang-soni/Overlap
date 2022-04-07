@@ -26,6 +26,7 @@ public class PanelManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
+            Debug.Log("destroyed");
             Destroy(gameObject);
         }
         else if (Instance == null)

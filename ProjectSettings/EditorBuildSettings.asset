@@ -5,22 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 1d6bfd188c327894ba2d46686ff4ba76
+  - enabled: 0
+    path: Assets/Scenes/Level1.unity
+    guid: 8a2df4a364312dd48943fe8707653cdf
+  - enabled: 0
+    path: Assets/Scenes/Level2.unity
+    guid: 8568ff97758700743b95ee16a1d730f6
+  - enabled: 0
+    path: Assets/Scenes/Level3.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Thankyou.unity
+    guid: 3f45ac8abc2319b428785b00c915295d
+  - enabled: 0
+    path: Assets/Scenes/Scene_test/Loading.unity
+    guid: 1f941249c785f6d4ba0ee0b20cad6654
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/MainMenu_test.unity
+    guid: 24bf859bf58e6824ba47ed5547c46c15
   - enabled: 1
     path: Assets/Scenes/MultiplayerScenes/Level1_mult.unity
     guid: 7a8dd1b4a037d8f4f9d012eed25959a9
-  - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: 8a2df4a364312dd48943fe8707653cdf
-  - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: 8568ff97758700743b95ee16a1d730f6
-  - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Thankyou.unity
-    guid: 3f45ac8abc2319b428785b00c915295d
   m_configObjects: {}
