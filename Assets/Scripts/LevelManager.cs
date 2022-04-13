@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LevelManager : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+public class LevelManager : MonoBehaviourPunCallbacks
 {
     public static LevelManager Instance = null;
-    public GameObject playerOneSpawn, playerTwoSpawn;
-    public GameObject playerOne, playerTwo;
-    public Joystick leftJoystick;
-    public Joystick rightJoystick;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,23 +17,24 @@ public class LevelManager : MonoBehaviour
             Instance = this;
         }
     }
-    private void Start()
+
+    public void CheckLevelStatus()
     {
-        SpawnPlayer(playerOne, playerOneSpawn.transform);
-        SpawnPlayer(playerTwo, playerTwoSpawn.transform);
-    }
-    private void Update()
-    {
-        if (playerOne.GetComponent<PlayerMovement>().levelCompleted && playerTwo.GetComponent<PlayerMovement>().levelCompleted)
+        foreach (MultiplayerPlayerController player in GameManager.Instance.multiplayerPlayerControllers)
         {
-            UiManager.Instance.LevelComplete();
+            if (player.levelCompleted == false)
+            {
+                return;
+            }
         }
-       
+        GameManager.Instance.masterPlayer.View.RPC("LevelCompleteCallback", RpcTarget.AllBuffered);
     }
-    void SpawnPlayer(GameObject obj,Transform pos)
+    public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("Spawned");
-        GameObject tempPlayer = Instantiate(obj, pos.position, pos.rotation);
-        Debug.Log(tempPlayer);
+        UiManager.Instance.lostConnectionObj.SetActive(true);
+        UiManager.Instance.levelCompleteObj.SetActive(false);
+        UiManager.Instance.pauseBtn.SetActive(false);
+        UiManager.Instance.leftJoystick.gameObject.SetActive(false);
+        UiManager.Instance.rightJoystick.gameObject.SetActive(false);
     }
 }

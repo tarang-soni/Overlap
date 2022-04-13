@@ -41,11 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: White
-    uniqueID: 1706177985
-    locked: 0
   - name: Black
     uniqueID: 1546595653
+    locked: 0
+  - name: White
+    uniqueID: 1706177985
     locked: 0
   - name: none
     uniqueID: 2648257637

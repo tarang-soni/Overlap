@@ -10,7 +10,7 @@ using System;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public static LobbyManager Instance = null;
-
+    public CharacterSelect characterSelect;
     public TMP_Text roomName;
 
     PanelManager panelManager;
@@ -21,6 +21,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     List<PlayerItem> playerItemsList = new List<PlayerItem>();
     public PlayerItem playerItemPrefab;
     public Transform playerItemParent;
+    //public GameObject selectBtnObj;
+    public bool CanStartGame { get; set; }
 
     public GameObject startButton;
     private void Awake()
@@ -41,7 +43,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers )
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers &&CanStartGame)
         {
             startButton.SetActive(true);
         }
@@ -56,8 +58,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (createInput.text.Length>=1)
         {
-            PhotonNetwork.CreateRoom(createInput.text, new RoomOptions() { MaxPlayers = 2, BroadcastPropsChangeToAll = true })   ;
-
+            PhotonNetwork.CreateRoom(createInput.text, new RoomOptions() { MaxPlayers = 2, BroadcastPropsChangeToAll = true });
         }
     }
     public void JoinRoom()
@@ -143,7 +144,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public void OnClickPlayButton()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.LoadLevel(++GameManager.Instance.currentSceneNumber);
+
     }
     
 

@@ -14,7 +14,7 @@ public enum DoorType
     Plus2,
     Hex2,
     Triangle2,
-
+    openDoor
 }
 public class DoorMechanism : MonoBehaviour
 {
@@ -46,11 +46,12 @@ public class DoorMechanism : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-                Debug.Log("triggered");
                 collision.GetComponent<MultiplayerPlayerController>().levelCompleted = true;
-                Debug.Log("triggered"+ collision.GetComponent<MultiplayerPlayerController>().levelCompleted);
+
+                LevelManager.Instance.CheckLevelStatus();
             }
 
         }
     }
+
 }

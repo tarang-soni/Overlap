@@ -29,18 +29,6 @@ public class RoomItem : MonoBehaviourPunCallbacks
     {
         roomName.text = _roomName;
     }
-    public void OnClickItem()
-    {
-        Debug.Log(roomInfo.CustomProperties["Password"]);
-        //lobbyManager.JoinRoom(roomName.text);
-        //lobbyManager.roomInfoPanel.gameObject.SetActive(true);
-        //lobbyManager.roomInfoPanel.roomName = roomInfo.Name;
-        //lobbyManager.roomInfoPanel.roomInfoPanelName.text = roomInfo.Name;
-        //lobbyManager.roomInfoPanel.capacity.text = roomInfo.PlayerCount + "/" + roomInfo.MaxPlayers;
-        //lobbyManager.roomInfoPanel.ownerName = 
-
-        
-    }
 
 
 }

@@ -1,13 +1,18 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class GameManager : MonoBehaviour
-{
-    public static GameManager Instance = null;
+using Photon.Pun;
+using Photon.Realtime;
 
-    public Joystick leftJoystick;
-    public Joystick rightJoystick;
+public class GameManager : MonoBehaviourPunCallbacks
+{
+
+    public int currentSceneNumber { get; set; }
+    public List<MultiplayerPlayerController> multiplayerPlayerControllers = new List<MultiplayerPlayerController>();
+    public MultiplayerPlayerController masterPlayer { get; set; }
+    public int totalLevels { get; } = 15;
+    public static GameManager Instance = null;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,8 +22,18 @@ public class GameManager : MonoBehaviour
         else if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
+    private void Start()
+    {
+        currentSceneNumber = 0;
+    }
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.LoadLevel(currentSceneNumber);
+    }
+
     public class PlayerStats
     {
         public Character charType;
@@ -29,4 +44,6 @@ public class GameManager : MonoBehaviour
             name = _name;
         }
     }
+
+
 }

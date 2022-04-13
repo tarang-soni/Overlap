@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using System;
 
-public class UiManager : MonoBehaviour
+public class UiManager : MonoBehaviourPunCallbacks
 {
     public static UiManager Instance = null;
 
     public GameObject levelCompleteObj;
-
+    public GameObject lostConnectionObj;
+    public GameObject pauseBtn;
+    public Joystick leftJoystick;
+    public Joystick rightJoystick;
+    public GameObject nextLevelBtn;
+    public Action LevelCompleteScreenEvent;
+    public GameObject clientNextLevelText;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,14 +28,29 @@ public class UiManager : MonoBehaviour
             Instance = this;
         }
     }
-    public void Pause(bool isPaused)
+    private void Start()
     {
-        Time.timeScale = isPaused == true ? 0 : 1;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            nextLevelBtn.SetActive(true);
+            clientNextLevelText.SetActive(false);
+        }
+        else
+        {
+            nextLevelBtn.SetActive(false);
+            clientNextLevelText.SetActive(true);
+        }
     }
     public void MainMenuBtn()
     {
-        Time.timeScale = 1;
+        PhotonNetwork.LeaveRoom();
+        GameManager.Instance.currentSceneNumber = 0;
+
+    }
+    public override void OnLeftRoom()
+    {
         SceneManager.LoadScene(0);
+        PhotonNetwork.Disconnect();
     }
     public void LevelComplete()
     {
@@ -35,13 +58,15 @@ public class UiManager : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }public void Play()
-    {
-        SceneManager.LoadScene(1);
+        if (GameManager.Instance.currentSceneNumber <= GameManager.Instance.totalLevels)
+        {
+            
+            PhotonNetwork.LoadLevel(++GameManager.Instance.currentSceneNumber);
+        }
+        else
+        {
+            MainMenuBtn();
+        }
     }
-    public void Quit()
-    {
-        Application.Quit();
-    }
+
 }

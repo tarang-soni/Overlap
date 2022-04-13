@@ -9,6 +9,7 @@ public class DoorManager : MonoBehaviour
     public event Action<DoorType> DoorOpen;
     public AudioSource audioSrc;
     public AudioClip clip;
+    
     private void Awake()
     {
         if (Instance !=null &&Instance !=this)
@@ -23,6 +24,7 @@ public class DoorManager : MonoBehaviour
     private void Start()
     {
         audioSrc.volume = 0.5f;
+
     }
     public void Door_OpenMechanism(DoorType _type)
     {

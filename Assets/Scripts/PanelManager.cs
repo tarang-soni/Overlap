@@ -38,7 +38,7 @@ public class PanelManager : MonoBehaviour
     {
         panels = GetComponentsInChildren<PanelController>().ToList();
         panels.ForEach(x => x.gameObject.SetActive(false));
-        SwitchPanel(CanvasType.MainMenu);
+        SwitchPanel(CanvasType.LoadingScreen);
 
     }
     public void SwitchPanel(CanvasType _type)

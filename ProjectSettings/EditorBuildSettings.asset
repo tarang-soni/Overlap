@@ -5,28 +5,55 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: 1d6bfd188c327894ba2d46686ff4ba76
-  - enabled: 0
-    path: Assets/Scenes/Level1.unity
-    guid: 8a2df4a364312dd48943fe8707653cdf
-  - enabled: 0
-    path: Assets/Scenes/Level2.unity
-    guid: 8568ff97758700743b95ee16a1d730f6
-  - enabled: 0
-    path: Assets/Scenes/Level3.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Thankyou.unity
-    guid: 3f45ac8abc2319b428785b00c915295d
-  - enabled: 0
-    path: Assets/Scenes/Scene_test/Loading.unity
-    guid: 1f941249c785f6d4ba0ee0b20cad6654
   - enabled: 1
     path: Assets/Scenes/Scene_test/MainMenu_test.unity
     guid: 24bf859bf58e6824ba47ed5547c46c15
   - enabled: 1
-    path: Assets/Scenes/MultiplayerScenes/Level1_mult.unity
+    path: Assets/Scenes/Scene_test/Level1_mult.unity
     guid: 7a8dd1b4a037d8f4f9d012eed25959a9
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level2_mult.unity
+    guid: 2b09d7e5591740e41b71574b6274df42
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level3_mult.unity
+    guid: 23cee11ae0ad63f449e74304bdfb2cc6
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level4_mult.unity
+    guid: 49b027ba82c450549b7d8bba2298d963
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level5_mult.unity
+    guid: 5346eaefc583d684d9141f3a65ef7e3a
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level6_mult.unity
+    guid: 5e0bdfe1adb2e5c4faf7e935c5e74ec2
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level7_mult.unity
+    guid: 6ce372195ed17af449fb35cd28fbe6db
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level8_mult.unity
+    guid: a4adb000a8ce97e42866a066b56df721
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level9_mult.unity
+    guid: 778fc3cb0c21f4f4cb0070fff872277b
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level10_mult.unity
+    guid: 4478973e9aed5654085c9e33c83d5522
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level11_mult.unity
+    guid: c9d94d8fdf74b4e41974d7e10b0132a5
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level12_mult.unity
+    guid: 218efe7fde1f6e84d95615f8cc22271d
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level13_mult.unity
+    guid: 8d37d766489e7854bb79f894a16524b1
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level14_mult.unity
+    guid: 7185ceb70dd865d49b2f008114535d9e
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Level15_mult.unity
+    guid: ca129f25af283ce4a87a2d3581c519b8
+  - enabled: 1
+    path: Assets/Scenes/Scene_test/Thankyou.unity
+    guid: 3f45ac8abc2319b428785b00c915295d
   m_configObjects: {}
